@@ -24,7 +24,7 @@
    },
    "apis": {
       "helloworld1.0.0": {
-         "$ref": "helloworld_1.0.0.yaml"
+         "name": "helloworld:1.0.0"
       }
    },
    "visibility": {

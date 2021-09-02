@@ -1,0 +1,96 @@
+swagger: '2.0'
+info:
+  title: Branches
+  x-ibm-name: branches
+  version: 1.0.0
+schemes:
+  - https
+basePath: /branches
+security:
+  - clientID: []
+securityDefinitions:
+  clientID:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+x-ibm-configuration:
+  phase: realized
+  testable: true
+  enforced: true
+  properties:
+    target-url:
+      value: 'https://apictutorials.mybluemix.net/branches'
+      description: URL of the proxy policy
+      encoded: false
+  cors:
+    enabled: true
+  application-authentication:
+    certificate: false
+  assembly:
+    execute:
+      - invoke:
+          title: invoke
+          version: 2.0.0
+          verb: keep
+          target-url: $(target-url)
+    catch: []
+  gateway: datapower-api-gateway
+  type: rest
+  catalogs: {}
+  activity-log:
+    enabled: true
+    error-content: header
+    success-content: activity
+definitions:
+  branch:
+    type: object
+    description: Branch
+    additionalProperties: false
+    properties:
+      address:
+        $ref: '#/definitions/address'
+        properties: {}
+        description: Address of branch
+      type:
+        type: string
+        description: Type of Branch
+        example: atm
+      id:
+        type: string
+        description: The ID of the branch
+        example: 9d72ece0-7e7b-11e5-9038-55f9f9c08c06
+  address:
+    type: object
+    description: Address
+    additionalProperties: false
+    properties:
+      street1:
+        type: string
+        description: The first line of the address
+        example: 'Biltmore, 1 Lodge St'
+      street2:
+        type: string
+        description: The second line of the address
+        example: Suite 101
+      city:
+        type: string
+        description: The city of the address
+        example: Asheville
+      state:
+        type: string
+        description: The state of the address
+        example: NC
+      zip_code:
+        type: string
+        description: The zip code of the address
+        example: '28803'
+paths:
+  /details:
+    get:
+      responses:
+        '200':
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/branch'
+      parameters: []
+    parameters: []

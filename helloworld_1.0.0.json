@@ -23,7 +23,7 @@
                   "actions": [
                      {
                         "set": "message.body",
-                        "value": "{\"Hello World\":\"From APIC v10014 Gateway\"}",
+                        "value": "{\"HelloWorld\":\"From APIC v10014 Gateway\"}",
                         "type": "string"
                      }
                   ]
